@@ -102,7 +102,7 @@ module Danger
     end
 
     def ensure_flake8_is_installed
-      system "pip install flake8 --upgrade" unless flake8_installed?
+      system "pip install --user flake8 --upgrade" unless flake8_installed?
     end
 
     def flake8_installed?
@@ -121,7 +121,7 @@ module Danger
     def comment_inline(errors=[])
       errors.each do |error|
         file, line, column, reason = error.split(":")
-        message(reason.strip.gsub("'", "`"), file: file, line: line.to_i)
+        message(reason.strip.gsub("'", "`"), file: file, line: line)
       end
     end
 
